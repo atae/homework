@@ -83,7 +83,7 @@ class Playwright
   attr_reader :id
   def self.all
     data = PlayDBConnection.instance.execute("SELECT * FROM playwrights")
-    datum.map do {|datum| datum = Playwright.new(datum)}
+    data.map {|datum| datum = Playwright.new(datum)}
   end
 
   def self.find_by_name(name)
@@ -143,4 +143,5 @@ class Playwright
       SQL
 
       data
+    end
   end
