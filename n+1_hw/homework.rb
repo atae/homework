@@ -135,11 +135,14 @@ class House
   end
 
   def better_seeds_query
-    plants_with_counts = house.
-    plants.
-    select('seeds.*', COUNT(*) AS seeds_count).
-    join(:seeds).
-    group('plants.id')
+    plants = self.plants.includes(:seeds)
+    seeds = []
+
+    plants.each do |plant|
+      seeds << plants.seeds
+    end
+
+    seeds
   end
 end
 
